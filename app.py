@@ -24,6 +24,14 @@ from flask import (Flask, redirect, render_template, request,
 
 app = Flask(__name__)
 
+@app.route('/detect-face', methods=['POST'])
+def detect_face():
+    image = request.files['image']
+    image_url = save_image_to_blob(image)  # Or save locally
+    face_id = detect_faces(image_url)
+    return f"Face detected, ID: {face_id}"
+
+
 @app.route('/')
 def index():
    print('Request for index page received')
