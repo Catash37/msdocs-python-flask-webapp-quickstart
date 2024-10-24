@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'WebAppCA'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F4A346437847459AA1DF1A7AAF926BC1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_947E8EBEE6EB494FAB3D43DB9382995F }}
