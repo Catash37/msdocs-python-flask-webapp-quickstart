@@ -1,10 +1,28 @@
 import os
 
+from azure.cognitiveservices.vision.face import FaceClient
+from msrest.authentication import CognitiveServicesCredentials
+
+# Set up credentials
+subscription_key = os.getenv('89772058661344f592eb00a4947d2b7b')
+endpoint = os.getenv('https://testwebappface.cognitiveservices.azure.com/')
+
+# Initialize FaceClient
+face_client = FaceClient(endpoint, CognitiveServicesCredentials(subscription_key))
+
+def detect_faces(image_url):
+    # Detect face from image
+    detected_faces = face_client.face.detect_with_url(url=image_url)
+    if not detected_faces:
+        raise Exception("No face detected")
+
+    return detected_faces[0].face_id
+
+
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
